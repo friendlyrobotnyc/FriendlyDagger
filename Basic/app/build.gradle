@@ -32,6 +32,7 @@ dependencies {
     implementation androidDependencies.appCompat
     implementation androidDependencies.ktxCore
     implementation androidDependencies.constraintLayout
+    implementation androidDependencies.recyclerView
 
     implementation libraryDependencies.moshi
     implementation libraryDependencies.retrofit
