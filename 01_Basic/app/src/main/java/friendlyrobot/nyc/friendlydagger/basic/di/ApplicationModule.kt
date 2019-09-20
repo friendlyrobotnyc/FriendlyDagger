@@ -13,15 +13,9 @@ object ApplicationModule {
     @JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit(openLibraryUrl: String) = Retrofit.Builder()
+    fun provideRetrofit(openLibraryUrl: String) : BookService = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
         .baseUrl(openLibraryUrl)
         .build()
-
-    @JvmStatic
-    @Provides
-    @Singleton
-    fun provideBookService(retrofit: Retrofit) : BookService {
-        return retrofit.create(BookService::class.java)
-    }
+        .create(BookService::class.java)
 }
