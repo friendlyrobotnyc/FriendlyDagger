@@ -1,15 +1,14 @@
 package friendlyrobot.nyc.friendlydagger.basic
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.ProgressBar
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.item_book.view.*
+import friendlyrobot.nyc.friendlydagger.basic.ui.BookAdapter
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -19,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     private val bookAdapter: BookAdapter = BookAdapter()
     protected lateinit var recyclerView: RecyclerView
+    protected lateinit var indeterminateBar: ProgressBar
     protected lateinit var searchView: SearchView
 
     @Inject
@@ -28,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         (applicationContext as BookApplication).applicationComponent.inject(this)
+        //bookService = (applicationContext as BookApplication).applicationComponent.bookService()
 
         searchView = findViewById(R.id.searchView)
         searchView.isIconified = false
@@ -35,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
 
             override fun onQueryTextSubmit(query: String?): Boolean {
+                showLoading()
                 query?.let{queryBooks(it)}
                 return false
             }
@@ -46,6 +48,8 @@ class MainActivity : AppCompatActivity() {
         recyclerView = findViewById(R.id.recyclerView)
         recyclerView.layoutManager = LinearLayoutManager(this)
         recyclerView.adapter = bookAdapter
+
+        indeterminateBar = findViewById(R.id.indeterminateBar)
     }
 
     fun queryBooks(value: String) {
@@ -61,40 +65,20 @@ class MainActivity : AppCompatActivity() {
                 ) {
                     Log.e("onResponse", "NumFount: ${response.body()?.numFound}")
                     response.body()?.docs?.map { it.toBook() }?.toList()?.let { bookAdapter.add(it) }
+                    hideLoading()
                 }
 
             }
         )
     }
 
-}
-
-
-class BookAdapter : RecyclerView.Adapter<BookViewHolder>() {
-
-    private val books = mutableListOf<Book>()
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) : BookViewHolder {
-        val inflater = LayoutInflater.from(parent.context)
-
-        return BookViewHolder(inflater.inflate(R.layout.item_book, parent, false))
+    fun showLoading() {
+        recyclerView.visibility = View.GONE
+        indeterminateBar.visibility = View.VISIBLE
     }
 
-    override fun getItemCount() = books.size
-
-    override fun onBindViewHolder(holder: BookViewHolder, position: Int) {
-        books.getOrNull(position)?.let { holder.bind(it) }
-    }
-
-    fun add(booksToAdd: List<Book>) {
-        books.clear()
-        books.addAll(booksToAdd)
-        notifyDataSetChanged()
-    }
-}
-
-class BookViewHolder(bookView: View) : RecyclerView.ViewHolder(bookView) {
-    fun bind (book: Book) {
-        itemView.bookTitle.text = book.title
+    fun hideLoading() {
+        recyclerView.visibility = View.VISIBLE
+        indeterminateBar.visibility = View.GONE
     }
 }

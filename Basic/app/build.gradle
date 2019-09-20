@@ -27,11 +27,9 @@ android {
 
 dependencies {
 
-
     implementation androidDependencies.kotlin
     implementation androidDependencies.appCompat
     implementation androidDependencies.ktxCore
-    implementation androidDependencies.constraintLayout
     implementation androidDependencies.recyclerView
 
     implementation libraryDependencies.moshi

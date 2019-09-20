@@ -1,6 +1,8 @@
 package friendlyrobot.nyc.friendlydagger.basic
 
 import android.app.Application
+import friendlyrobot.nyc.friendlydagger.basic.di.ApplicationComponent
+import friendlyrobot.nyc.friendlydagger.basic.di.DaggerApplicationComponent
 
 class BookApplication : Application() {
 
@@ -10,7 +12,6 @@ class BookApplication : Application() {
         super.onCreate()
         applicationComponent = DaggerApplicationComponent.builder()
             .endpoint("https://openlibrary.org/")
-            .application(this)
             .build()
     }
 }
