@@ -48,20 +48,14 @@ We provide our dependencies, in this case a retrofit service, from the module
 @Module
 object ApplicationModule {
 
-    @JvmStatic
+    @@JvmStatic
     @Provides
     @Singleton
-    fun provideRetrofit(openLibraryUrl: String) = Retrofit.Builder()
+    fun provideRetrofit(openLibraryUrl: String) : BookService = Retrofit.Builder()
         .addConverterFactory(MoshiConverterFactory.create())
         .baseUrl(openLibraryUrl)
         .build()
-
-    @JvmStatic
-    @Provides
-    @Singleton
-    fun provideBookService(retrofit: Retrofit) : BookService {
-        return retrofit.create(BookService::class.java)
-    }
+        .create(BookService::class.java)
 }
 
 ```
