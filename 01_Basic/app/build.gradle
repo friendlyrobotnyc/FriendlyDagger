@@ -44,5 +44,4 @@ dependencies {
     testImplementation testDependencies.mockk
 
     androidTestImplementation testDependencies.junitKtx
-    androidTestImplementation testDependencies.espresso
 }
