@@ -17,8 +17,9 @@ The most basic dagger configuration comprising of just an application graph that
 
 Check out the [DI Package](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di). There you will see the [Application Component](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationComponent.kt) and the [Application Module](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationModule.kt)
 
-Here is a basic Component that gives us our dependencies, a retrofit service, a convenience method for building, and a way to pass in parameters to our dependencies
+Here is a basic Component that gives us our dependencies (a retrofit service), a convenience method for building the component, and a way to pass in parameters to our dependencies
 
+[Application Component](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationComponent.kt)
 ```kotlin
 
 @Singleton
@@ -41,7 +42,7 @@ interface ApplicationComponent {
 
 ```
 
-We provide our dependencies, in this case a retrofit service, from the module
+We provide our dependencies, in this case a retrofit service, from the [module](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationModule.kt)
 
 ```kotlin
 
