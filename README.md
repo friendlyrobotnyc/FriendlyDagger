@@ -77,7 +77,7 @@ class BookApplication : Application() {
 
 ```
 
-Accessing the Application Component to get our retrofit service in [MainActivity](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/MainActivity.kt)
+Accessing the Application Component to get our retrofit service in [MainActivity](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/MainActivity.kt#L30)
 
 ```kotlin
 @Inject
