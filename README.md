@@ -1,5 +1,6 @@
 # FriendlyDagger
 
+Let's see how we can set up Dagger, what are the different configurations we can choose from and what will each offer. I wanted a sandbox to help myself and hopefully others. Please let me know if I can improve something or add an additional setup :) thank you for checking this out!
 
 ## 01_Basic
 
