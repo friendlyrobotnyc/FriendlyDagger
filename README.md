@@ -49,7 +49,7 @@ We provide our dependencies, in this case a retrofit service, from the [module](
 @Module
 object ApplicationModule {
 
-    @@JvmStatic
+    @JvmStatic
     @Provides
     @Singleton
     fun provideRetrofit(openLibraryUrl: String) : BookService = Retrofit.Builder()
