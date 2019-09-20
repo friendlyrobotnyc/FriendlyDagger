@@ -8,7 +8,7 @@ First things first!
 
 * it abstracts how we construct our dependencies
 * constructor injection forces us to write better code that is testable
-* scoping of our dependencies 
+* we get scoping of our dependencies 
 
 
 ## 01_Basic
@@ -17,7 +17,7 @@ The most basic dagger configuration comprising of just an application graph that
 
 Check out the [DI Package](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di). There you will see the [Application Component](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationComponent.kt) and the [Application Module](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationModule.kt)
 
-Here is a basic Component that gives us our dependencies, a retrofit services, a convenience method for building, and a way to pass in parameters to our dependencies
+Here is a basic Component that gives us our dependencies, a retrofit service, a convenience method for building, and a way to pass in parameters to our dependencies
 
 ```kotlin
 
@@ -60,7 +60,7 @@ object ApplicationModule {
 
 ```
 
-Building the Application Component 
+Building the Application Component in our [BookApplication](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/BookApplication.kt)
 
 ```kotlin
 class BookApplication : Application() {
@@ -77,11 +77,16 @@ class BookApplication : Application() {
 
 ```
 
-Accessing the Application Component 
+Accessing the Application Component to get our retrofit service in [MainActivity](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/MainActivity.kt)
 
 ```kotlin
+@Inject
+protected lateinit var bookService: BookService
 
-(applicationContext as BookApplication).applicationComponent.inject(this)
+override fun onCreate(savedInstanceState: Bundle?) {
+    super.onCreate(savedInstanceState)
+    (applicationContext as BookApplication).applicationComponent.inject(this)
+}
 
 ```
 
