@@ -2,13 +2,22 @@
 
 Let's see how we can set up [Dagger](https://github.com/google/dagger), what are the different configurations we can choose from and what will each offer. I wanted a sandbox to help myself and hopefully others. Please let me know if I can improve something or add an additional setup :) thank you for checking this out!
 
+First things first!
+
+### Why use a Dependency Injection Framework?
+
+* it abstracts how we construct our dependencies
+* constructor injection forces us to write better code that is testable
+* scoping of our dependencies 
+
+
 ## 01_Basic
 
 The most basic dagger configuration comprising of just an application graph that provides a retrofit service.
 
 Check out the [DI Package](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di). There you will see the [Application Component](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationComponent.kt) and the [Application Module](../master/01_Basic/app/src/main/java/friendlyrobot/nyc/friendlydagger/basic/di/ApplicationModule.kt)
 
-Here is a basic Component that gives us our dependencies, a retrofit client, a convenience method for building, and a way to pass in parameters to our dependencies
+Here is a basic Component that gives us our dependencies, a retrofit services, a convenience method for building, and a way to pass in parameters to our dependencies
 
 ```kotlin
 
@@ -32,7 +41,7 @@ interface ApplicationComponent {
 
 ```
 
-We provide our dependencies, in this case a retrofit client, from the module
+We provide our dependencies, in this case a retrofit service, from the module
 
 ```kotlin
 
