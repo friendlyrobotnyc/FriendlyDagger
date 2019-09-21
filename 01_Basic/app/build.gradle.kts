@@ -6,9 +6,6 @@ plugins {
     kotlin("kapt")
 }
 
-
-
-
 android {
     compileSdkVersion (Versions.compileSdk)
     buildToolsVersion ( Versions.buildTools)
