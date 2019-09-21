@@ -12,14 +12,17 @@ interface ApplicationComponent {
 
     @Component.Builder
     interface Builder {
-        fun build() : ApplicationComponent // convenience method to help us build the component
+        // convenience method to help us build the component
+        fun build() : ApplicationComponent
 
-        @BindsInstance // we pass in our endpoint url to make it available to the module
+        // we pass in our endpoint url to make it available to the module
+        @BindsInstance
         fun endpoint(endpointUrl: String) : Builder
     }
 
     fun inject(mainActivity: MainActivity)
 
-    fun bookService() : BookService // we don't have to use inject() above, we can
-                                    // get the BookService this way as well
+    // we don't have to use inject() above, we can
+    // get the BookService this way as well
+    fun bookService() : BookService
 }
